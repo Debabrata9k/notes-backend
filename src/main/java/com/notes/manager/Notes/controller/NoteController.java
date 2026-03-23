@@ -12,33 +12,34 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/notes")
 public class NoteController {
 
     private final NoteService noteService;
 
-    @GetMapping("/notes/list")
+    @GetMapping
     public ResponseEntity<List<NoteDto>> getAllNote() {
         return ResponseEntity.ok(noteService.getNotes());
     }
 
-    @GetMapping("/notes/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<NoteDto> getNoteById(@PathVariable Long id){
         return ResponseEntity.ok(noteService.getNoteById(id));
     }
 
-    @PostMapping("/notes")
+    @PostMapping
     public ResponseEntity<NoteDto> createNewNote(@RequestBody AddNoteDto addNoteDto) {
         System.out.println("🔥 POST API CALLED 🔥");
         return ResponseEntity.status(HttpStatus.CREATED).body(noteService.createNewNote(addNoteDto));
     }
 
-    @DeleteMapping("/notes/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<NoteDto> deleteANote(@PathVariable Long id){
         noteService.deleteNoteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/notes/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<NoteDto> updateNote(@PathVariable Long id, @RequestBody AddNoteDto addNoteDto) {
         return ResponseEntity.ok(noteService.updateNote(id, addNoteDto));
     }
