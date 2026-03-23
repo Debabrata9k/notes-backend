@@ -28,6 +28,7 @@ public class NoteController {
 
     @PostMapping("/notes")
     public ResponseEntity<NoteDto> createNewNote(@RequestBody AddNoteDto addNoteDto) {
+        System.out.println("🔥 POST API CALLED 🔥");
         return ResponseEntity.status(HttpStatus.CREATED).body(noteService.createNewNote(addNoteDto));
     }
 
