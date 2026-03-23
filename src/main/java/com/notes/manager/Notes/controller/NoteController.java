@@ -16,7 +16,7 @@ public class NoteController {
 
     private final NoteService noteService;
 
-    @GetMapping("/notes")
+    @GetMapping("/notes/list")
     public ResponseEntity<List<NoteDto>> getAllNote() {
         return ResponseEntity.ok(noteService.getNotes());
     }
